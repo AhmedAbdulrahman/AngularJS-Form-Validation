@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="minmax">
+
+<head>
+    <meta charset="utf-8">
+    <title>Submit and Validate a form AngularJS</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=9">
+
+    <link rel="stylesheet" href="css/style.css"/>
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+</head>
+
+<body>
+    <nav  class="navbar navbar-default" role="navigation">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">
+          AngularJS Form Validation
+        </a>
+            </div>
+        </div>
+    </nav>
+    <div class="container" ng-controller="MinMaxCtrl">
+        <div class="row">
+            <div class="col-md-6">
+                <form novalidate="novalidate" ng-submit="onSubmit()">
+                    <div class="form-group">
+                        <label for="name">Name: </label>
+                        <input type="text" class="form-control" id="name" ng-model="formModel.name" required="required">
+                    </div>
+                    <div class="form-group">
+                        <label for="username">Username: </label>
+                        <input type="text"
+                               class="form-control"
+                               id="username"
+                               ng-model="formModel.username"
+                               ng-pattern="/^[A-Za-z0-9_]{1,32}$/"
+                               ng-minlength="7"
+                               ng-pattern-err-type="badUsername"
+                               required="required">
+                    </div>
+                    <div class="form-group">
+                        <label for="age">Age: </label>
+                        <input type="number"
+                               class="form-control"
+                               id="age"
+                               min="18"
+                               max="64"
+                               ng-model="formModel.age"
+                               ng-min-err-type="tooYoung"
+                               required="required">
+                    </div>
+                    <div class="form-group">
+                        <label for="sex">Sex: </label>
+                        <select id="sex" class="form-control" ng-model="formModel.sex" required="required">
+                            <option value="">Please Choose</option>
+                            <option value="male">Male</option>
+                            <option value="femal">Female</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email: </label>
+                        <input type="email" class="form-control" id="email" ng-model="formModel.email" required="required">
+                    </div>
+                    <div class=" form-group">
+                        <label for="password">Password: </label>
+                        <input type="password"
+                               class="form-control"
+                               id="password"
+                               ng-model="formModel.password"
+                               required="required"
+                               ng-minlength="10">
+                    </div>
+                    <div class="form-group ">
+                        <button class="btn btn-primary" type="submit">Register</button>
+                    </div>
+                </form>
+            </div>
+            <div class="col-md-6 ">
+                <pre>{{ formModel | json}}</pre>
+            </div>
+        </div>
+    </div>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js "></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="angular.min.js"></script>
+    <script src="js/angular-auto-validate/dist/jcs-auto-validate.min.js "></script>
+    <script src="js/main.js"></script>
+</body>
+
+</html>
